@@ -1,0 +1,132 @@
+Compose V1: docker-compose
+V2-3: docker compose
+
+docker-compose.yml
+
+services:
+  database:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - db-data:/var/lib/mysql
+  webserver:
+    image: 'nginx:alpine'
+    ports:
+      - 8080:80
+    depends_on:
+      - cache
+      - database
+  cache:
+    image: redis
+
+volumes:
+  db-data:
+
+
+services:
+  app:
+    build: ./app
+    context: ./app
+    Dockerfile: dockerfile-app
+    image: sathyabhat:app
+
+services:
+  app:
+    image: mysql
+    environment:
+    PATH: /home
+    API_KEY: api_key
+
+services:
+  app:
+    image: mysql
+    env_file:
+    - common.env
+    - app.env
+    - secrets.env
+
+depends_on just runs containers in that order and doesnt wait for them to start.
+
+services:
+  database:
+    image: nginx
+    ports:
+    - "8080:80"
+
+Bind mounts:
+
+services:
+  database:
+    image: mysql
+    volume:
+    - ./dbdir:/var/lib/mysql
+
+Restart key: default no.
+always: restart after exit
+on-failure: only if it exits due to an error
+unless-stopped: always restart unless exited explicitly or if docker daemon stops
+
+
+
+docker-compose up -d
+
+Snapshot of logs: docker-compose logs
+Show last n lines: docker-compose logs --tail=n
+
+docker-compose start
+docker-compose stop
+
+Remove containers, networks and volumes:
+docker-compose down
+
+
+
+docker-compose subcommands:
+
+build: build and tag images
+
+docker-compose build <options> <service>
+--compress: compress the build context
+--no-cache: ignore the build cache when building the image
+
+down: stops the containers and removes containers, volumes and images
+
+exec: equivalent to docker exec
+docker-compose exec <service> <command>
+
+logs: log output from all services
+docker-compose logs <options> <services>
+show just one service logs: docker-compose logs django
+
+stop: stop containers
+docker-compose stop
+
+
+
+Exercise:
+services:
+  mysql:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+    - 3306:3306
+    volumes:
+    - dbdata:/var/lib/mysql
+  adminer:
+    image: adminer
+    ports:
+    - 8080:8080
+
+volumes:
+  dbdata:
+
+validate config: docker-compose config
+
+docker-compose up -d
+
+docker-compose logs 
+
+
+
