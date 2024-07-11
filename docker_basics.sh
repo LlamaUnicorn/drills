@@ -112,6 +112,7 @@ docker login -u <username> --password-stdin private-docker-registry.example.com 
 Get-Content docker_password | docker login -u <username> --password-stdin private-docker-registry.example.com
 
 #Show images
+docker images
 docker image ls
 docker image ls | --all
 
