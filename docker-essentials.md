@@ -1,4 +1,4 @@
-# 1. run nginx and test if it runs
+# 1. Run nginx and test if it runs
 ```sh
 docker image pull nginx:latest
 docker run --name my-testing-nginx -p 8080:80 nginx
