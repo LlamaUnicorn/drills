@@ -100,7 +100,7 @@ curl -s -X PATCH -d 'shiny=False' http://127.0.0.1:8000/artifacts/artifacts/1/
 curl -s -X DELETE http://127.0.0.1:8000/artifacts/artifacts/1/
 
 ## Drill 2: ViewSets
-# Create a ViewSet for Artifact model with default_router.
+# Create a ViewSet for Artifact model with the default_router.
 
 # sandbox/artifacts/apps.py
 
@@ -259,13 +259,10 @@ value = "login" >
             < / base >
                 < / html >
 
-                    # create 2 users
+# create 2 users
 
-                    # Permissions part 2
-                    python
-manage.py
-startapp
-books
+# Permissions part 2
+python manage.py startapp books
 
 # update installed apps
 

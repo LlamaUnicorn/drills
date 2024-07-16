@@ -224,7 +224,7 @@ Embed kernel info into the home directory:
 RUN echo 'uname -rv' > $HOME/kernel-info
 
 In exec form:
-RUN ["executible", "parameter1", "parameter2"]
+RUN ["executable", "parameter1", "parameter2"]
 Exec is preferred if you dont have to use pipes, variables, etc.
 
 RUN: apt-get install python
