@@ -10,7 +10,7 @@ docker container stop my_container
 ```
 # 3. Remove a container
 ```sh
-docker images
+docker ps -a
 docker rm <container_id>
 ```
 # 4. Remove image
@@ -20,7 +20,6 @@ docker image prune
 ```
 
 # 5. Run container once and print ping output in terminal
-docker run -it --name my_container1 busybox:latest ping -c 6 localhost
 ```sh
 docker run -it --name my_sh_container busybox:latest ping -c 6 localhost
 ```
@@ -32,6 +31,7 @@ Remove a container
 Create but don't run a container
 ```sh
 docker run -dit --name my_container busybox:latest
+# to start a container: docker start container-name
 docker container pause my_container
 docker container unpause my_container
 docker container stop my_container
