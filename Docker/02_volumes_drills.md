@@ -34,6 +34,23 @@ ls
 cat docker_kernel_info.txt
 # This is a file created from container having kernel 4.9.87-linuxkit-aufs.
 ```
+# 3. Populate named volume with custom data
+```sh
+# Create a Named Volume
+docker volume create my_data_volume
+
+# Populate the Volume with Data
+# Create and run a temporary container to populate the volume
+docker run --rm -v my_data_volume:/container/data -v /path/to/your/local/data:/local/data busybox cp -r /local/data/* /container/data/
+# --rm: Automatically removes the container when it exits.
+# -v my_data_volume:/container/data: Mounts the named volume to /container/data inside the container.
+# -v /path/to/your/local/data:/local/data: Mounts the host directory containing your data to /local/data inside the container.
+# cp -r /local/data/* /container/data/: Copies the data from the host directory to the volume.
+
+# Use the Volume in Your Container
+docker run -it --name my_container -v my_data_volume:/container/data busybox:latest sh
+
+```
 # 3. Bind mount
 ```sh
 # Create folder: mkdir -p /root/testing
