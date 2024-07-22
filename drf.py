@@ -1,5 +1,8 @@
+# TODO use clickable urls
+
 ## Drill 1: api_view endpoint
 # Create an endpoint for Person model using @api_view
+# urls: views.list_people > views: @api_view(['GET'])
 
 # sandbox/people/models.py
 from django.models import models
@@ -15,6 +18,7 @@ class Person(models.Model):
 
 
 # sandbox/people/admin.py
+# list_display Can be a list or a tuple
 from django.contrib import admin
 from .models import Person
 
@@ -65,7 +69,8 @@ urlpatterns = [
 
 
 # sandbox/sandbox/settings.py
-
+# ALLOWED_HOSTS
+# INSTALLED_APPS
 
 # sandbox/sandbox/urls.py
 from django.urls import path, include
@@ -103,6 +108,9 @@ curl -s -X DELETE http://127.0.0.1:8000/artifacts/artifacts/1/
 # Create a ViewSet for Artifact model with the default_router.
 
 # sandbox/artifacts/apps.py
+class ArtifactsConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'artifacts'
 
 
 # sandbox/artifacts/models.py
